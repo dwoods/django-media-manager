@@ -1,6 +1,7 @@
 # coding: utf-8
 
 # imports
+import mimetypes
 import os, re, datetime
 from time import gmtime, strftime
 
@@ -39,6 +40,7 @@ class FileObject(object):
         self.head, self.filename = os.path.split(path)
         self.filename_lower = self.filename.lower() # important for sorting
         self.filetype = get_file_type(self.filename) # strange if file no extension then this folder
+        self.mimetype = mimetypes.guess_type(self.filename_lower)
     
     def _filesize(self):
         """
